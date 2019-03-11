@@ -1,16 +1,15 @@
 ﻿@page "{handler?}"
-
-@model StuttgartCore.Pages.modul03.calcModel
+@model StuttgartCore.Pages.modul03.calc2Model
 @{
-    ViewData["Title"] = "calc";
+    ViewData["Title"] = "calc2";
 }
 
-<h1>calc</h1>
-<form >
+<h1>calc2</h1>
+
+<form method="post">
     <input name="eins" />
     <input name="zwei" />
     <button asp-page-handler="plus">+</button>
     <button asp-page-handler="minus">-</button>
 </form>
 @Model.Ergebnis
-
