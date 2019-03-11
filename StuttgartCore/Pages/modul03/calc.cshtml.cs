@@ -10,11 +10,33 @@ namespace StuttgartCore.Pages.modul03
     public class calcModel : PageModel
     {
         public int Ergebnis { get; set; }
-        public void OnGet()
+        public void OnGetMinus()
         {
+            try
+            {
             int eins=Int32.Parse(   HttpContext.Request.Query["eins"]);
             int zwei = Int32.Parse(HttpContext.Request.Query["zwei"]);
-            Ergebnis = eins + zwei;
+            Ergebnis = eins - zwei;
+            }
+            catch (Exception)
+            {
+
+            }
+           
+
         }
-    }
+        public void OnGetPlus()
+        {
+            try
+            {
+                int eins = Int32.Parse(HttpContext.Request.Query["eins"]);
+                int zwei = Int32.Parse(HttpContext.Request.Query["zwei"]);
+                Ergebnis = eins + zwei;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        }
 }
