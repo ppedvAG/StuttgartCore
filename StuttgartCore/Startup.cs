@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StuttgartCore.Pages.modul02;
 
 namespace StuttgartCore
 {
@@ -33,11 +34,13 @@ namespace StuttgartCore
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<HannesKlasse>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,8 +55,38 @@ namespace StuttgartCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+          
+            //app.Use(next =>
+            //{
+            //    return async ctx =>
+            //    {
+            //        await ctx.Response.WriteAsync("before 1");
+            //        await next(ctx);
+            //        await ctx.Response.WriteAsync("after 1");
+            //    };
+            //});
 
+            //app.Use(next =>
+            //{
+            //    return async ctx =>
+            //    {
+            //        await ctx.Response.WriteAsync("before 2");
+            //        await next(ctx);
+            //        await ctx.Response.WriteAsync("after 2");
+            //    };
+            //});
+
+            //app.Use(next =>
+            //{
+            //    return async ctx =>
+            //    {
+            //        await ctx.Response.WriteAsync("before 3");
+            //        await next(ctx);
+            //        await ctx.Response.WriteAsync("after 3");
+            //    };
+            //});
             app.UseMvc();
+           
         }
     }
 }
