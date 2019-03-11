@@ -42,8 +42,15 @@
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <div class="row">
+                <div class="col-3">
+                    @RenderSection("Werbung", required: false)
+                </div>
+                <div class="col-9 ">
+                    @RenderBody()
+                </div>
+                </div>
+</main>
     </div>
 
     <footer class="border-top footer text-muted">

@@ -1,0 +1,19 @@
+﻿@page
+@model StuttgartCore.Pages.modul04.NutzePartialModel
+@{
+    ViewData["Title"] = "NutzePartial";
+}
+
+<h1>NutzePartial</h1>
+<partial name="_Zeit" />
+<form method="post">
+    <button>do</button>
+</form>
+<div id="zeit"></div>
+<a href="#" onclick="lade()">lade....</a>
+<script>
+    function lade() {
+        $('#zeit').load("Nutzepartial?handler=lade");
+    }
+
+</script>
