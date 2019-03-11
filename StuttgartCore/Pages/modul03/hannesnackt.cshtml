@@ -1,0 +1,25 @@
+﻿@page
+@{
+    ViewData["Title"] = "hannesnackt";
+
+    
+}
+@functions
+{
+    public void OnGet()
+    {
+
+    }
+}
+
+<h1>hannesnackt</h1>
+<div>@ViewData["Title"]<a href="#"></a></div>
+@{ 
+    var x = 1;
+    x++;
+    <text>@x</text>
+    var email = "<a href='#'>test</a>";
+}
+
+
+@Html.Raw(email)

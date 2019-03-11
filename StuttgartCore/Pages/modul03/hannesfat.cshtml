@@ -1,0 +1,23 @@
+﻿@page "/Hannes2"
+@model StuttgartCore.Pages.modul03.hannesfatModel
+
+@using StuttgartCore.Pages.modul02
+@inject HannesKlasse franz
+@{
+    ViewData["Title"] = "hannesfat";
+}
+
+<h1>hannesfat</h1>
+
+@franz.HannesProperty
+
+@if (franz.HannesProperty==2)
+{
+    <h1>juhuu es sind Zwillinge</h1>
+}
+
+<hr />
+@Model.Feld1
+<input value='@Model.Feld1' />
+
+http://donaim.de/Rechnung/edit/1
