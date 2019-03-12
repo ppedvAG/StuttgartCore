@@ -100,7 +100,7 @@ namespace StuttgartCore
             app.MapWhen(context => context.Request.Path.ToString().Contains("imageloader.ashx"),
                 appBranch =>
                 {
-                   // appBranch.UseMiddleware<ImageLoader>();
+                   // appBranch.UseMiddleware<ImageLoader>(); //ohne Extension Methode
                     appBranch.UseImageLoader();
                 });
          

@@ -1,0 +1,3 @@
+﻿install-package Microsoft.EntityFrameworkCore.sqlserver
+install-package Microsoft.EntityFrameworkCore.tools
+install-package Microsoft.VisualStudio.Web.Codegeneration.design
