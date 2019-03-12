@@ -5,6 +5,10 @@ install-package Microsoft.VisualStudio.Web.Codegeneration.design
 Scaffold-DbContext "Server=localhost;Database=northwind;trusted_connection=true" Microsoft.EntityFrameworkCore.sqlserver -OutPutDir Models
 
 
+add-migration rechnungen -Context RechnungContext
+
+update-database rechnungen -context rechnungcontext
+
 "ConnectionStrings": {
   
     "Northwind1": "Data Source=localhost;Initial Catalog=Northwind;Integrated Security=True"
