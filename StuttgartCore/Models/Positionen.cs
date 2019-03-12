@@ -12,6 +12,7 @@ namespace StuttgartCore.Models
         public int ID { get; set; }
         public int RechnungenID { get; set; }
         public int Anzahl { get; set; }
+        public string Text { get; set; }
         public float Preis { get; set; }
     }
 }
