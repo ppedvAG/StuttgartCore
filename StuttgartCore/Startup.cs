@@ -33,15 +33,12 @@ namespace StuttgartCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSession(options => options.Cookie.HttpOnly = true);
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-   //         services.AddSingleton<HannesKlasse>();
+           services.AddSingleton<HannesKlasse>();
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,7 +50,6 @@ namespace StuttgartCore
                 app.UseHsts();
             }
            // app.UseMyMiddleware();
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
