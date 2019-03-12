@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCaching.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,12 +37,15 @@ namespace StuttgartCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSession(options => options.Cookie.HttpOnly = true);
-            services.AddResponseCaching();
+           // services.AddResponseCaching();
+           services.AddResponseCachingForced();
+         
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddCookieTempDataProvider();
-           services.AddSingleton<HannesKlasse>();
-            services.AddDbContext<northwindContext>(o=>
+            services.AddSingleton<HannesKlasse>();
+            services.AddDbContext<northwindContext>(o =>
             o.UseSqlServer(Configuration.GetConnectionString("Northwind1")));
 
             services.AddDbContext<RechnungContext>(o =>
@@ -62,13 +66,13 @@ namespace StuttgartCore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-           // app.UseMyMiddleware();
+            // app.UseMyMiddleware();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
             app.UseResponseCaching();
-           
+
             //app.Use(async (context, next) =>
             //{
             //    await context.Response.WriteAsync("BEFORE RESPONSE");
@@ -103,14 +107,14 @@ namespace StuttgartCore
             //    };
             //});
             app.UseMvc();
-            
+
             app.MapWhen(context => context.Request.Path.ToString().Contains("imageloader.ashx"),
                 appBranch =>
                 {
-                   // appBranch.UseMiddleware<ImageLoader>(); //ohne Extension Methode
+                    // appBranch.UseMiddleware<ImageLoader>(); //ohne Extension Methode
                     appBranch.UseImageLoader();
                 });
-         
+
         }
     }
 }

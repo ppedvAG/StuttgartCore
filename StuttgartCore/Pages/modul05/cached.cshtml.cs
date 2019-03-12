@@ -10,10 +10,10 @@ namespace StuttgartCore.Pages.modul05
     [ResponseCache(Duration =300,Location =ResponseCacheLocation.Any)]
     public class cachedModel : PageModel
     {
-      
+        public DateTime MyProperty { get; set; }
         public void OnGet()
         {
-
+            MyProperty = DateTime.Now;
         }
 
     }
