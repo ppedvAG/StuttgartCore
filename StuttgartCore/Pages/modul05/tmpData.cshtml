@@ -1,0 +1,15 @@
+﻿@page
+@model StuttgartCore.Pages.modul05.tmpDataModel
+@{
+    ViewData["Title"] = "tmpData";
+}
+
+<h1>tmpData</h1>
+
+<form method="post">
+    <input name="wert" />
+    <button>save</button>
+</form>
+@Model.Wert
+<hr>
+@TempData.Peek("hannes")

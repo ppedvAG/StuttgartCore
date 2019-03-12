@@ -33,7 +33,10 @@ namespace StuttgartCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddSession(options => options.Cookie.HttpOnly = true);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddResponseCaching();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddCookieTempDataProvider();
            services.AddSingleton<HannesKlasse>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +57,7 @@ namespace StuttgartCore
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+            app.UseResponseCaching();
 
             //app.Use(async (context, next) =>
             //{
