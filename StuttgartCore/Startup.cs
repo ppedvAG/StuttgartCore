@@ -43,6 +43,10 @@ namespace StuttgartCore
            services.AddSingleton<HannesKlasse>();
             services.AddDbContext<northwindContext>(o=>
             o.UseSqlServer(Configuration.GetConnectionString("Northwind1")));
+
+            services.AddDbContext<RechnungContext>(o =>
+        o.UseSqlServer(
+            Configuration.GetConnectionString("Rechnung1")));
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

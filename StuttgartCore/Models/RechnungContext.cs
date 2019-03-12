@@ -8,7 +8,18 @@ namespace StuttgartCore.Models
 {
     public class RechnungContext:DbContext
     {
+        public RechnungContext(
+            DbContextOptions<RechnungContext> options):
+            base(options)
+        {
+          
+        }
+
         public virtual DbSet<Rechnungen> Rechnungens { get; set; }
         public virtual DbSet<Positionen> Positionens { get; set; }
+
+     
+
     }
+
 }
