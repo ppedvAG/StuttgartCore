@@ -10,7 +10,7 @@ namespace StuttgartCore.Models
     {
         public Rechnungen()
         {
-
+            Positionen = new List<Positionen>();
         }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
@@ -18,5 +18,6 @@ namespace StuttgartCore.Models
         public DateTime Datum { get; set; }
         public string KopfText { get; set; }
         public float Summe { get; set; }
+        virtual public  List<Positionen> Positionen{ get; set; }
     }
 }
