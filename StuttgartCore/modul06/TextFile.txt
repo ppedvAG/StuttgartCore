@@ -1,3 +1,5 @@
 ﻿install-package Microsoft.EntityFrameworkCore.sqlserver
 install-package Microsoft.EntityFrameworkCore.tools
 install-package Microsoft.VisualStudio.Web.Codegeneration.design
+
+Scaffold-DbContext "Server=localhost;Database=northwind;trusted_connection=true" Microsoft.EntityFrameworkCore.sqlserver -OutPutDir Models
