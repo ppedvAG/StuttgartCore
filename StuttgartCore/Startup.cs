@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StuttgartCore.Middleware;
 using StuttgartCore.Pages.modul02;
 
 namespace StuttgartCore
@@ -31,16 +32,16 @@ namespace StuttgartCore
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddSession(options => options.Cookie.HttpOnly = true);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<HannesKlasse>();
+   //         services.AddSingleton<HannesKlasse>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-           
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -51,27 +52,33 @@ namespace StuttgartCore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseMyMiddleware();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-          
-            //app.Use(next =>
-            //{
-            //    return async ctx =>
-            //    {
-            //        await ctx.Response.WriteAsync("before 1");
-            //        await next(ctx);
-            //        await ctx.Response.WriteAsync("after 1");
-            //    };
-            //});
+            app.UseSession();
 
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("BEFORE RESPONSE");
+            //    await next();
+            //    await context.Response.WriteAsync("AFTER RESPONSE");
+            //});
+            ////app.Use(_next=>async ctx =>
+            //{
+
+            //    await ctx.Response.WriteAsync("before 1");
+            //    await _next(ctx);
+            //    await ctx.Response.WriteAsync("after 1");
+
+            //});
             //app.Use(next =>
             //{
             //    return async ctx =>
             //    {
             //        await ctx.Response.WriteAsync("before 2");
-            //        await next(ctx);
+            //        next(ctx);
             //        await ctx.Response.WriteAsync("after 2");
             //    };
             //});
@@ -81,12 +88,12 @@ namespace StuttgartCore
             //    return async ctx =>
             //    {
             //        await ctx.Response.WriteAsync("before 3");
-            //        await next(ctx);
+            //        next(ctx);
             //        await ctx.Response.WriteAsync("after 3");
             //    };
             //});
             app.UseMvc();
-           
+         
         }
     }
 }

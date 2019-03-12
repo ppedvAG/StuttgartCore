@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StuttgartCore.Pages.modul02
 {
@@ -12,7 +13,9 @@ namespace StuttgartCore.Pages.modul02
     }
     class VerwendeHannesKlasse
     {
-       
+        public VerwendeHannesKlasse()
+        {
+        }
 
         public VerwendeHannesKlasse(HannesKlasse hk)
         {
@@ -24,7 +27,7 @@ namespace StuttgartCore.Pages.modul02
     {
         public MyClass()
         {
-            //var x = new VerwendeHannesKlasse();
+            var x = new VerwendeHannesKlasse();
         }
 
     }
