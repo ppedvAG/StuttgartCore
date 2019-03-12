@@ -9,7 +9,7 @@ namespace StuttgartCore.Models
     public class RechnungContext:DbContext
     {
         public RechnungContext(
-            DbContextOptions<RechnungContext> options):
+            DbContextOptions options):
             base(options)
         {
           
