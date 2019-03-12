@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StuttgartCore.Middleware;
 using StuttgartCore.Pages.modul02;
+using StuttgartCore.Pages.modul05;
 
 namespace StuttgartCore
 {
@@ -38,6 +39,7 @@ namespace StuttgartCore
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddCookieTempDataProvider();
            services.AddSingleton<HannesKlasse>();
+        
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -59,7 +61,7 @@ namespace StuttgartCore
             app.UseCookiePolicy();
             app.UseSession();
             app.UseResponseCaching();
-
+           
             //app.Use(async (context, next) =>
             //{
             //    await context.Response.WriteAsync("BEFORE RESPONSE");
@@ -94,6 +96,13 @@ namespace StuttgartCore
             //    };
             //});
             app.UseMvc();
+            
+            app.MapWhen(context => context.Request.Path.ToString().Contains("imageloader.ashx"),
+                appBranch =>
+                {
+                   // appBranch.UseMiddleware<ImageLoader>();
+                    appBranch.UseImageLoader();
+                });
          
         }
     }
