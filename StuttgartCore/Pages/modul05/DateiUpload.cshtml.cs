@@ -18,7 +18,8 @@ namespace StuttgartCore.Pages.modul05
         public void OnPost(IFormFile datei)
         {
             var pfad = @"C:\aspnetcore\training\StuttgartCore\StuttgartCore\wwwroot\app_data";
-            pfad = Path.Combine(pfad, Path.GetFileName(datei.FileName));
+            pfad = Path.Combine(AppDomain.CurrentDomain.GetData("MapPath").ToString(),
+                Path.GetFileName(datei.FileName));
             using (var fs = new FileStream(pfad, FileMode.Create))
             {
                 datei.CopyTo(fs);

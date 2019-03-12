@@ -42,6 +42,7 @@ namespace StuttgartCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            AppDomain.CurrentDomain.SetData("MapPath", env.ContentRootPath);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
