@@ -1,0 +1,28 @@
+﻿@page
+@model StuttgartCore.Pages.modul10.minichatModel
+@{
+    ViewData["Title"] = "minichat";
+}
+
+<h1>minichat</h1>
+<input id="text1" />
+<a href="#" onclick="chat()">send</a>
+<ul id="ul1"></ul>
+
+@section Scripts
+{
+
+<script src="~/lib/@@aspnet/signalr/dist/browser/signalr.js"></script>
+    <script>
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/hubs/hannes")
+            .build();
+
+        connection.on("ClientRec", function (sender, message) {
+            $('<li>').text(message).appendTo($('#ul1'));
+        });
+        connection.start().then(function () {
+            $('<li>').text("connected....").appendTo($('#ul1'));
+        });
+    </script>
+}
