@@ -10,15 +10,15 @@ namespace StuttgartCore.Pages.modul07
     [IgnoreAntiforgeryToken(Order=1001)]
     public class RechnungenPagingModel : PageModel
     {
-        public int Seite { get; set; }
+        public int seite { get; set; }
         public void OnGet()
         {
 
         }
-        public ViewComponentResult OnPost()
+        public ViewComponentResult OnPost(int? seite)
         {
-            Seite++;
-            return ViewComponent("RechnungPaged", new { page = Seite });
+            seite++;
+            return ViewComponent("RechnungPaged", new { page = seite });
 
 
         }

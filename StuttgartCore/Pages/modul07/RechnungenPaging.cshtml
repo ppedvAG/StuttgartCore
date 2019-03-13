@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @addTagHelper *, StuttgartCore
 
 @model StuttgartCore.Pages.modul07.RechnungenPagingModel
@@ -8,18 +8,20 @@
 
 <h1>RechnungenPaging</h1>
 <table id="table1">
-    <vc:rechnung-paged page="@Model.Seite"></vc:rechnung-paged>
+    <vc:rechnung-paged page="@Model.seite"></vc:rechnung-paged>
 </table>
 <a href="#" onclick="lade()" class="btn btn-outline-primary">lade...</a>
 
 <script>
+    var seite = 0;
     function lade() {
+        seite++;
         $.ajax({
-            url: 'RechnungenPaging',
-            type:'POST'
+            url: 'RechnungenPaging?seite='+seite,
+            type: 'POST'
         }).done(function (daten) {
             $('#table1').append(daten);
-        })
+        });
 
     }
 </script>
