@@ -1,0 +1,37 @@
+﻿@page
+@model StuttgartCore.Pages.modul07.RechPos.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Positionen</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Positionen.Anzahl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Positionen.Anzahl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Positionen.Text)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Positionen.Text)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Positionen.Preis)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Positionen.Preis)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Positionen.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
