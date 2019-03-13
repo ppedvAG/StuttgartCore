@@ -27,7 +27,8 @@ namespace StuttgartCore.Pages.modul07.Rechnung
                 return NotFound();
             }
 
-            Rechnungen = await _context.Rechnungens.FirstOrDefaultAsync(m => m.ID == id);
+            Rechnungen = await _context.Rechnungens.Include(p=>p.Positionen)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Rechnungen == null)
             {

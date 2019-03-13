@@ -10,32 +10,56 @@
 <div>
     <h4>Rechnungen</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rechnungen.KundenID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rechnungen.KundenID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rechnungen.Datum)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rechnungen.Datum)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rechnungen.KopfText)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rechnungen.KopfText)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Rechnungen.Summe)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Rechnungen.Summe)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-5">
+            <dl class="row">
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rechnungen.KundenID)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rechnungen.KundenID)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rechnungen.Datum)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rechnungen.Datum)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rechnungen.KopfText)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rechnungen.KopfText)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rechnungen.Summe)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rechnungen.Summe)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-7">
+            <table class="table table-striped">
+                <tr>
+                    <th>Anzahl</th>
+                    <th>Beschreibung </th>
+                    <th>Preis</th>
+
+                </tr>
+                @foreach (var item in Model.Rechnungen.Positionen)
+                {
+                <tr>
+                    <td>@item.Anzahl</td>
+                    <td>@item.Text</td>
+                    <td>@item.Preis</td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Rechnungen.ID">Edit</a> |
