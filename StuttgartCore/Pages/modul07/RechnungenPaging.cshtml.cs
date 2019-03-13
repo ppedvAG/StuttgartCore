@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace StuttgartCore.Pages.modul07
 {
+    [IgnoreAntiforgeryToken(Order=1001)]
     public class RechnungenPagingModel : PageModel
     {
         public int Seite { get; set; }
