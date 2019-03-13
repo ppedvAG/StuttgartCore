@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,9 @@ namespace StuttgartCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("de-de");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("de-de");
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

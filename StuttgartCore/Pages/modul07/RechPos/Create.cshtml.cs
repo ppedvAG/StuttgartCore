@@ -12,7 +12,7 @@ namespace StuttgartCore.Pages.modul07.RechPos
     public class CreateModel : PageModel
     {
         private readonly StuttgartCore.Models.RechnungContext _context;
-
+        public List<SelectListItem> RechnungIDs { get; set; }
         public CreateModel(StuttgartCore.Models.RechnungContext context)
         {
             _context = context;
@@ -20,7 +20,13 @@ namespace StuttgartCore.Pages.modul07.RechPos
 
         public IActionResult OnGet()
         {
-           // ViewBag.Rechn
+            var q = from r in _context.Rechnungens
+                    select new SelectListItem
+                    {
+                        Text = r.KundenID.ToString(),
+                        Value = r.KundenID.ToString()
+                    };
+            RechnungIDs = q.ToList();
             return Page();
         }
 
