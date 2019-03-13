@@ -1,0 +1,10 @@
+﻿@using StuttgartCore.Models
+@model List<Rechnungen>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.KopfText</td>
+        <td>@item.Summe</td>
+    </tr>
+}

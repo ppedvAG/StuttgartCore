@@ -1,0 +1,13 @@
+﻿@page
+@addTagHelper *, StuttgartCore
+
+@model StuttgartCore.Pages.modul07.RechnungenPagingModel
+@{
+    ViewData["Title"] = "RechnungenPaging";
+}
+
+<h1>RechnungenPaging</h1>
+<table id="table1">
+    <vc:rechnung-paged page="@Model.Seite"></vc:rechnung-paged>
+</table>
+
