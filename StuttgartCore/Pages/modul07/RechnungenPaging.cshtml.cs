@@ -17,7 +17,7 @@ namespace StuttgartCore.Pages.modul07
         }
         public ViewComponentResult OnPost(int? seite)
         {
-            seite++;
+         
             return ViewComponent("RechnungPaged", new { page = seite });
 
 
