@@ -18,11 +18,15 @@
             .withUrl("/hubs/hannes")
             .build();
 
-        connection.on("ClientRec", function (sender, message) {
+        connection.on("ClientRec", function (message) {
             $('<li>').text(message).appendTo($('#ul1'));
         });
         connection.start().then(function () {
             $('<li>').text("connected....").appendTo($('#ul1'));
         });
+
+        function chat() {
+            connection.invoke("Send", $('#text1').val());
+        }
     </script>
 }

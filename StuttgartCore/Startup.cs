@@ -17,6 +17,7 @@ using StuttgartCore.Middleware;
 using StuttgartCore.Models;
 using StuttgartCore.Pages.modul02;
 using StuttgartCore.Pages.modul05;
+using StuttgartCore.Pages.modul10;
 
 namespace StuttgartCore
 {
@@ -57,6 +58,7 @@ namespace StuttgartCore
             services.AddSingleton<HannesKlasse>();
             services.AddDbContext<northwindContext>(o =>
             o.UseSqlServer(Configuration.GetConnectionString("Northwind1")));
+            services.AddSignalR();
 
             services.AddDbContext<RechnungContext>(o =>
         o.UseSqlServer(
@@ -84,6 +86,8 @@ namespace StuttgartCore
             app.UseResponseCaching();
             app.UseSwagger();
             app.UseSwaggerUi3();
+            app.UseSignalR(routes => routes.MapHub<HannesHub>("/hubs/hannes"));
+           
             //app.Use(async (context, next) =>
             //{
             //    await context.Response.WriteAsync("BEFORE RESPONSE");
