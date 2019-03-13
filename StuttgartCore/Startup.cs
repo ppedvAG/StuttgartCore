@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.ResponseCaching.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,7 @@ namespace StuttgartCore
 
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("de-de");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("de-de");
+            services.AddSwaggerDocument();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -43,9 +45,13 @@ namespace StuttgartCore
             services.AddSession(options => options.Cookie.HttpOnly = true);
            // services.AddResponseCaching();
            services.AddResponseCachingForced();
-         
 
-            services.AddMvc()
+
+            services.AddMvc(options => {
+                options.RespectBrowserAcceptHeader = true;
+                options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+            }
+            )
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddCookieTempDataProvider();
             services.AddSingleton<HannesKlasse>();
@@ -76,7 +82,8 @@ namespace StuttgartCore
             app.UseCookiePolicy();
             app.UseSession();
             app.UseResponseCaching();
-
+            app.UseSwagger();
+            app.UseSwaggerUi3();
             //app.Use(async (context, next) =>
             //{
             //    await context.Response.WriteAsync("BEFORE RESPONSE");

@@ -1,0 +1,22 @@
+﻿@page
+@model StuttgartCore.Pages.modul09.ApiConsumerModel
+@{
+    ViewData["Title"] = "ApiConsumer";
+}
+
+<h1>ApiConsumer</h1>
+<ul id="ul1"></ul>
+<a href="#" onclick="lade()">lade...</a>
+<script>
+    function lade() {
+
+        $.getJSON("https://localhost:44307/api/values")
+            .done(function (daten) {
+                //console.warn(daten);
+                $.each(daten, function (key, item) {
+                    
+                    $('<li>').text(item.kopfText).appendTo($('#ul1'));
+                })
+            })
+    }
+</script>
